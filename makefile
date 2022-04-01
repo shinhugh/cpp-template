@@ -33,9 +33,17 @@ clean :
 
 # --------------------------------------------------
 
+# Create build directory
+
+build :
+	@echo "Creating build directory"
+	@mkdir -p $(PATH_BUILD)
+
+# --------------------------------------------------
+
 # Build executables
 
-$(PATH_BUILD)/build.out : $(OBJ)
+$(PATH_BUILD)/build.out : $(OBJ) | build
 	@echo "Building: build.out"
 	@g++ -o $@ $^
 
@@ -43,14 +51,14 @@ $(PATH_BUILD)/build.out : $(OBJ)
 
 # Build object files
 
-$(PATH_BUILD)/main.o : $(PATH_SRC)/main.cpp $(PATH_SRC)/debug.h
+$(PATH_BUILD)/main.o : $(PATH_SRC)/main.cpp $(PATH_SRC)/debug.h | build
 	@echo "Building: main.o"
 	@g++ -c -o $@ $<
 
-$(PATH_BUILD)/config.o : $(PATH_SRC)/config.cpp $(PATH_SRC)/config.h
+$(PATH_BUILD)/config.o : $(PATH_SRC)/config.cpp $(PATH_SRC)/config.h | build
 	@echo "Building: config.o"
 	@g++ -c -o $@ $<
 
-$(PATH_BUILD)/debug.o : $(PATH_SRC)/debug.cpp $(PATH_SRC)/debug.h
+$(PATH_BUILD)/debug.o : $(PATH_SRC)/debug.cpp $(PATH_SRC)/debug.h | build
 	@echo "Building: debug.o"
 	@g++ -c -o $@ $<
