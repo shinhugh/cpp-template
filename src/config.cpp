@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <cstring>
-#include "config.h"
+#include <config.h>
 
 bool Config::processArguments(int argc, const char * const *argv, Config& config) {
   config.debug = false;

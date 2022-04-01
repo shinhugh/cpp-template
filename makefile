@@ -54,12 +54,12 @@ $(PATH_BUILD)/build.out : $(OBJ) | build
 $(PATH_BUILD)/main.o : $(PATH_SRC)/main.cpp $(PATH_SRC)/config.h \
 $(PATH_SRC)/debug.h | build
 	@echo "Building: main.o"
-	@g++ -c -o $@ $<
+	@g++ -c -o $@ $< -I$(PATH_SRC)
 
 $(PATH_BUILD)/config.o : $(PATH_SRC)/config.cpp $(PATH_SRC)/config.h | build
 	@echo "Building: config.o"
-	@g++ -c -o $@ $<
+	@g++ -c -o $@ $< -I$(PATH_SRC)
 
 $(PATH_BUILD)/debug.o : $(PATH_SRC)/debug.cpp $(PATH_SRC)/debug.h | build
 	@echo "Building: debug.o"
-	@g++ -c -o $@ $<
+	@g++ -c -o $@ $< -I$(PATH_SRC)

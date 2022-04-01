@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include "debug.h"
+#include <debug.h>
 
 bool Debug::enabled = false;
 
