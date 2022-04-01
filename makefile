@@ -51,7 +51,8 @@ $(PATH_BUILD)/build.out : $(OBJ) | build
 
 # Build object files
 
-$(PATH_BUILD)/main.o : $(PATH_SRC)/main.cpp $(PATH_SRC)/debug.h | build
+$(PATH_BUILD)/main.o : $(PATH_SRC)/main.cpp $(PATH_SRC)/config.h \
+$(PATH_SRC)/debug.h | build
 	@echo "Building: main.o"
 	@g++ -c -o $@ $<
 
