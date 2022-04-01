@@ -5,8 +5,8 @@
 # Variables
 
 PATH_ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-PATH_SRC := $(PATH_ROOT)/src
 PATH_BUILD := $(PATH_ROOT)/build
+PATH_SRC := $(PATH_ROOT)/src
 
 OBJ := $(PATH_BUILD)/main.o $(PATH_BUILD)/config.o $(PATH_BUILD)/debug.o
 EXE := $(PATH_BUILD)/build.out
