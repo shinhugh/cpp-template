@@ -8,6 +8,6 @@ bool Debug::enabled = false;
 
 void Debug::log(const std::string &content) {
   if (enabled) {
-    std::cout << content << std::endl;
+    std::cout << content + std::string("\n");
   }
 }
