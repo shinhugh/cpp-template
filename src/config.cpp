@@ -1,10 +1,11 @@
 // Program config implementations
 
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include <config.h>
 
-bool Config::processArguments(int argc, const char * const *argv, Config& config) {
+bool Config::processArguments(int argc, const char * const *argv,
+Config &config) {
   config.debug = false;
 
   for (int i = 1; i < argc; i++) {

@@ -10,7 +10,8 @@ class Debug {
 public:
 
   static bool enabled;
-  static void log(const std::string &content);
+
+  static void log(const std::string &);
 
 };
 

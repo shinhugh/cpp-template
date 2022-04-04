@@ -8,7 +8,8 @@ class Config {
 public:
 
   bool debug;
-  static bool processArguments(int argc, const char * const *argv, Config& config);
+
+  static bool processArguments(int, const char * const *, Config &);
 
 };
 
