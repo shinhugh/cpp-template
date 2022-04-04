@@ -6,15 +6,17 @@
 
 bool Config::processArguments(int argc, const char * const *argv,
 Config &config) {
-  config.debug = false;
+  Config parsed = {
+    .debug = false
+  };
 
   for (int i = 1; i < argc; i++) {
     if (!strcmp(argv[i], "--debug") || !strcmp(argv[i], "-d")) {
-      if (config.debug) {
+      if (parsed.debug) {
         std::cout << "Duplicate argument: " << argv[i] << std::endl;
         return false;
       }
-      config.debug = true;
+      parsed.debug = true;
     }
 
     else {
@@ -23,5 +25,6 @@ Config &config) {
     }
   }
 
+  config = parsed;
   return true;
 }
