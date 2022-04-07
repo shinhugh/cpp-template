@@ -19,7 +19,7 @@ $(PATH_BUILD)/main.o
 
 # Unconditional targets
 
-.PHONY : default clean
+.PHONY : default clean exe obj
 
 # --------------------------------------------------
 
@@ -45,7 +45,15 @@ build :
 
 # --------------------------------------------------
 
-# Build executables
+# Build all executable files
+
+exe : $(EXE)
+	@echo "Removing object files"
+	@rm -f $(OBJ)
+
+# --------------------------------------------------
+
+# Build executable files
 
 $(PATH_BUILD)/build.out : \
 $(PATH_BUILD)/config.o \
@@ -54,6 +62,12 @@ $(PATH_BUILD)/main.o \
 | build
 	@echo "Building: build.out"
 	@g++ -o $@ $^
+
+# --------------------------------------------------
+
+# Build all object files
+
+obj : $(OBJ)
 
 # --------------------------------------------------
 
