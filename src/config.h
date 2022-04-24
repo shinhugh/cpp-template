@@ -3,14 +3,18 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-class Config {
+namespace Utilities {
 
-public:
+  class Config {
 
-  bool debug;
+  public:
 
-  static bool processArguments(int, const char * const *, Config &);
+    bool debug;
 
-};
+    static bool processArguments(int, const char * const *, Config &);
+
+  };
+
+}
 
 #endif

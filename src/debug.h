@@ -5,14 +5,18 @@
 
 #include <string>
 
-class Debug {
+namespace Utilities {
 
-public:
+  class Debug {
 
-  static bool enabled;
+  public:
 
-  static void log(const std::string &);
+    static bool enabled;
 
-};
+    static void log(const std::string &);
+
+  };
+
+}
 
 #endif

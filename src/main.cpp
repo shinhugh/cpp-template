@@ -4,11 +4,11 @@
 #include <debug.h>
 
 int main(int argc, char *argv[]) {
-  Config config;
-  if (!Config::processArguments(argc, argv, config)) {
+  Utilities::Config config;
+  if (!Utilities::Config::processArguments(argc, argv, config)) {
     return 0;
   }
-  Debug::enabled = config.debug;
+  Utilities::Debug::enabled = config.debug;
 
-  Debug::log("Hello world!");
+  Utilities::Debug::log("Hello world!");
 }
