@@ -4,31 +4,27 @@
 #include <iostream>
 #include <config.h>
 
-namespace Utilities {
+bool Config::processArguments(int argc, const char * const *argv,
+Config &config) {
+  Config parsed = {
+    .debugMode = false
+  };
 
-  bool Config::processArguments(int argc, const char * const *argv,
-  Config &config) {
-    Config parsed = {
-      .debug = false
-    };
-
-    for (int i = 1; i < argc; i++) {
-      if (!strcmp(argv[i], "--debug") || !strcmp(argv[i], "-d")) {
-        if (parsed.debug) {
-          std::cout << "Duplicate argument: " << argv[i] << std::endl;
-          return false;
-        }
-        parsed.debug = true;
-      }
-
-      else {
-        std::cout << "Unrecognized argument: " << argv[i] << std::endl;
+  for (int i = 1; i < argc; i++) {
+    if (!strcmp(argv[i], "--debug") || !strcmp(argv[i], "-d")) {
+      if (parsed.debugMode) {
+        std::cout << "Duplicate argument: " << argv[i] << std::endl;
         return false;
       }
+      parsed.debugMode = true;
     }
 
-    config = parsed;
-    return true;
+    else {
+      std::cout << "Unrecognized argument: " << argv[i] << std::endl;
+      return false;
+    }
   }
 
+  config = parsed;
+  return true;
 }

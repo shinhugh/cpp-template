@@ -1,9 +1,12 @@
 // Program entry point
 
-#include <utilities.h>
+#include <config.h>
+#include <util/util.h>
 
 int main(int argc, char *argv[]) {
-  Utilities::logEnabled = true; // TODO
+  Config config;
+  Config::processArguments(argc, argv, config);
+  Util::logEnabled = config.debugMode;
 
-  Utilities::log("Hello world!");
+  Util::log("Hello world!");
 }

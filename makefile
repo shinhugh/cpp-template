@@ -11,8 +11,9 @@ PATH_SRC := $(PATH_ROOT)/src
 EXE := \
 $(PATH_BUILD)/build.out
 OBJ := \
+$(PATH_BUILD)/config.o \
 $(PATH_BUILD)/main.o \
-$(PATH_BUILD)/utilities.o
+$(PATH_BUILD)/util.o
 
 # --------------------------------------------------
 
@@ -55,8 +56,9 @@ exe : $(EXE)
 # Build executable files
 
 $(PATH_BUILD)/build.out : \
+$(PATH_BUILD)/config.o \
 $(PATH_BUILD)/main.o \
-$(PATH_BUILD)/utilities.o \
+$(PATH_BUILD)/util.o \
 | build
 	@echo "Building: build.out"
 	@g++ $^ -o $@
@@ -71,16 +73,24 @@ obj : $(OBJ)
 
 # Build object files
 
+$(PATH_BUILD)/config.o : \
+$(PATH_SRC)/config.cpp \
+$(PATH_SRC)/config.h \
+| build
+	@echo "Building: config.o"
+	@g++ $< -c -o $@ -I$(PATH_SRC)
+
 $(PATH_BUILD)/main.o : \
 $(PATH_SRC)/main.cpp \
-$(PATH_SRC)/utilities.h \
+$(PATH_SRC)/config.h \
+$(PATH_SRC)/util/util.h \
 | build
 	@echo "Building: main.o"
 	@g++ $< -c -o $@ -I$(PATH_SRC)
 
-$(PATH_BUILD)/utilities.o : \
-$(PATH_SRC)/utilities.cpp \
-$(PATH_SRC)/utilities.h \
+$(PATH_BUILD)/util.o : \
+$(PATH_SRC)/util/util.cpp \
+$(PATH_SRC)/util/util.h \
 | build
-	@echo "Building: utilities.o"
+	@echo "Building: util.o"
 	@g++ $< -c -o $@ -I$(PATH_SRC)

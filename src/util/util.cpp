@@ -1,12 +1,10 @@
-// Debug utilities implementations
+// Utilities implementations
 
 #include <iostream>
-#include <map>
 #include <string>
-#include <vector>
-#include <utilities.h>
+#include <util/util.h>
 
-namespace Utilities {
+namespace Util {
 
   bool logEnabled = false;
 
