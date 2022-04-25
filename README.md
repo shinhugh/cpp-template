@@ -48,6 +48,10 @@ To remove the build, run:
 make clean
 ```
 
+Update `makefile` as you add/remove files and modify interdependencies amongst
+your files (e.g. `#include`). Be sure to consider transitive dependencies as
+well.
+
 View the contents of `makefile` for other available targets, and refer to the
 [official documentation](https://www.gnu.org/software/make/manual/make.html) if
 you're unfamiliar with `make`.
