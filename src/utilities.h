@@ -3,19 +3,15 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include <map>
 #include <string>
+#include <vector>
 
 namespace Utilities {
 
-  class Debug {
+  extern bool logEnabled;
 
-  public:
-
-    static bool enabled;
-
-    static void log(const std::string &);
-
-  };
+  void log(const std::string &);
 
 }
 

@@ -1,15 +1,17 @@
 // Debug utilities implementations
 
 #include <iostream>
+#include <map>
 #include <string>
-#include <debug.h>
+#include <vector>
+#include <utilities.h>
 
 namespace Utilities {
 
-  bool Debug::enabled = false;
+  bool logEnabled = false;
 
-  void Debug::log(const std::string &message) {
-    if (enabled) {
+  void log(const std::string &message) {
+    if (logEnabled) {
       std::cout << message + std::string("\n");
     }
   }

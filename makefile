@@ -11,9 +11,8 @@ PATH_SRC := $(PATH_ROOT)/src
 EXE := \
 $(PATH_BUILD)/build.out
 OBJ := \
-$(PATH_BUILD)/config.o \
-$(PATH_BUILD)/debug.o \
-$(PATH_BUILD)/main.o
+$(PATH_BUILD)/main.o \
+$(PATH_BUILD)/utilities.o
 
 # --------------------------------------------------
 
@@ -33,7 +32,7 @@ default : $(PATH_BUILD)/build.out
 
 clean :
 	@echo "Removing executable and object files"
-	@rm -f $(EXE) $(OBJ)
+	@rm $(EXE) $(OBJ) -f
 
 # --------------------------------------------------
 
@@ -41,7 +40,7 @@ clean :
 
 build :
 	@echo "Creating build directory"
-	@mkdir -p $(PATH_BUILD)
+	@mkdir $(PATH_BUILD) -p
 
 # --------------------------------------------------
 
@@ -49,19 +48,18 @@ build :
 
 exe : $(EXE)
 	@echo "Removing object files"
-	@rm -f $(OBJ)
+	@rm $(OBJ) -f
 
 # --------------------------------------------------
 
 # Build executable files
 
 $(PATH_BUILD)/build.out : \
-$(PATH_BUILD)/config.o \
-$(PATH_BUILD)/debug.o \
 $(PATH_BUILD)/main.o \
+$(PATH_BUILD)/utilities.o \
 | build
 	@echo "Building: build.out"
-	@g++ -o $@ $^
+	@g++ $^ -o $@
 
 # --------------------------------------------------
 
@@ -73,24 +71,16 @@ obj : $(OBJ)
 
 # Build object files
 
-$(PATH_BUILD)/config.o : \
-$(PATH_SRC)/config.cpp \
-$(PATH_SRC)/config.h \
-| build
-	@echo "Building: config.o"
-	@g++ -c -o $@ $< -I$(PATH_SRC)
-
-$(PATH_BUILD)/debug.o : \
-$(PATH_SRC)/debug.cpp \
-$(PATH_SRC)/debug.h \
-| build
-	@echo "Building: debug.o"
-	@g++ -c -o $@ $< -I$(PATH_SRC)
-
 $(PATH_BUILD)/main.o : \
 $(PATH_SRC)/main.cpp \
-$(PATH_SRC)/config.h \
-$(PATH_SRC)/debug.h \
+$(PATH_SRC)/utilities.h \
 | build
 	@echo "Building: main.o"
-	@g++ -c -o $@ $< -I$(PATH_SRC)
+	@g++ $< -c -o $@ -I$(PATH_SRC)
+
+$(PATH_BUILD)/utilities.o : \
+$(PATH_SRC)/utilities.cpp \
+$(PATH_SRC)/utilities.h \
+| build
+	@echo "Building: utilities.o"
+	@g++ $< -c -o $@ -I$(PATH_SRC)
